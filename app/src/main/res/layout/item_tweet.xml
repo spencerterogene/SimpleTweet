@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -15,18 +16,15 @@
         android:layout_marginTop="0dp"
         tools:srcCompat="@tools:sample/avatars" />
 
-
     <TextView
         android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
         android:layout_alignBottom="@+id/ScreenName"
-        android:fontFamily="sans-serif-thin"
-        android:text="Terogene"
+        android:layout_marginStart="10dp"
         android:layout_toEndOf="@+id/ScreenName"
-
-        />
+        android:fontFamily="sans-serif-thin"
+        tools:text="Terogene" />
 
     <TextView
         android:id="@+id/ScreenName"
@@ -43,8 +41,6 @@
         android:layout_height="wrap_content"
         android:layout_toEndOf="@+id/username"
         />
-
-
 
     <TextView
         android:id="@+id/Body"
