@@ -16,6 +16,19 @@
         android:layout_marginTop="0dp"
         tools:srcCompat="@tools:sample/avatars" />
 
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_alignBottom="@+id/ScreenName"
+        android:fontFamily="sans-serif-thin"
+        android:text="Terogene"
+        android:layout_toEndOf="@+id/ScreenName"
+
+        />
+
     <TextView
         android:id="@+id/ScreenName"
         android:layout_width="wrap_content"
