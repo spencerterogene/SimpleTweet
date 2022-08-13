@@ -1,5 +1,7 @@
 package com.codepath.apps.restclienttemplate.models;
 
+import com.codepath.apps.restclienttemplate.TimeFormatter;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,7 +40,7 @@ public class Tweet {
     }
 
     public String getCreatedAt() {
-        return createdAt;
+        return  "."+ TimeFormatter.getTimeDifference(createdAt);
     }
 
     public long getId() {

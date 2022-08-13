@@ -44,8 +44,6 @@
         android:layout_toEndOf="@+id/username"
         />
 
-
-
     <TextView
         android:id="@+id/Body"
         android:layout_width="wrap_content"
