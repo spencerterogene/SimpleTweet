@@ -29,7 +29,8 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view =LayoutInflater.from(context).inflate(R.layout.item_tweet,parent,false);
-        return new ViewHolder(view);
+        TweetsAdapter.ViewHolder viewHolder = new TweetsAdapter.ViewHolder(view,listener);
+        return  viewHolder;
     }
 
     @Override
@@ -53,6 +54,15 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         notifyDataSetChanged();
     }
 
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener=listener;
+    }
+
+    public interface OnItemClickListener{
+    void OnItemClick(View itemView,int position);
+    }
+    private OnItemClickListener listener;
+
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         ImageView ProfileImage;
@@ -61,13 +71,20 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         TextView username;
         TextView Date;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView, final OnItemClickListener clickListener) {
             super(itemView);
             ProfileImage = itemView.findViewById(R.id.ProfileImage);
             Body = itemView.findViewById(R.id.Body);
             ScreenName = itemView.findViewById(R.id.ScreenName);
             username = itemView.findViewById(R.id.username);
             Date = itemView.findViewById(R.id.Date);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    clickListener.OnItemClick(itemView,getAdapterPosition());
+                }
+            });
 
         }
 
