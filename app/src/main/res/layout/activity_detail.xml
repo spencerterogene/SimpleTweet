@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -14,9 +15,7 @@
         />
 
     <RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+        android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="5dp"
     tools:context=".DetailActivity">
@@ -31,7 +30,6 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
         android:layout_marginTop="5dp"
-        android:layout_below="@+id/toolbar"
         tools:srcCompat="@tools:sample/avatars"
         />
 
@@ -63,11 +61,76 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="0dp"
         android:layout_marginTop="5dp"
-        android:fontFamily="sans-serif-thin"
-        tools:text="Description"
         android:autoLink="all"
+        android:fontFamily="sans-serif-thin"
+        tools:text="Description" />
+    <TextView
+        android:id="@+id/comment"
+        android:text="5"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/divider"
+        app:drawableLeftCompat="@drawable/comment"
+        />
+
+    <TextView
+        android:id="@+id/repeat"
+        android:text="5"
+        android:layout_below="@+id/divider"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:drawableLeftCompat="@drawable/repeat"
+        android:layout_toEndOf="@+id/comment"
+        />
+
+    <TextView
+        android:id="@+id/coeur"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/divider"
+        android:layout_width="wrap_content"
+        android:layout_marginStart="50dp"
+        android:text="5"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/repeat"
+        app:drawableLeftCompat="@drawable/coeur"
+        />
+
+    <TextView
+        android:id="@+id/share"
+        android:layout_marginStart="50dp"
+        android:text="5"
+        android:layout_below="@+id/divider"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/coeur"
+        app:drawableLeftCompat="@drawable/share"
+        />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/Description"
+        android:background="?android:attr/listDivider"
+        />
+
+    <View
+        android:id="@+id/divider1"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/comment"
+        android:background="?android:attr/listDivider"
         />
 
 
-</RelativeLayout>
+
+
+    </RelativeLayout>
 </LinearLayout>

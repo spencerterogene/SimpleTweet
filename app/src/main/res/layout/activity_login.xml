@@ -11,6 +11,13 @@
     android:background="#1DA1fD"
     tools:context=".LoginActivity" >
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/tool_bar"
+        android:elevation="12dp"
+        android:titleTextColor="#FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 
     <Button
@@ -23,11 +30,6 @@
         android:background="#ffffff"
         android:text="@string/login_label" />
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/tool_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
 
     <ImageView
         android:id="@+id/icon"

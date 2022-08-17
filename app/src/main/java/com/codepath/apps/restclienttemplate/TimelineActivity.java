@@ -41,6 +41,9 @@ public class TimelineActivity extends AppCompatActivity {
         Toolbar toolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        getSupportActionBar().setLogo(R.drawable.twitter);
+        getSupportActionBar().setTitle(" ");
+
         client = TwitterApp.getRestClient(this);
 
         swipeContainer = findViewById(R.id.swipeContainer);
@@ -83,6 +86,8 @@ public class TimelineActivity extends AppCompatActivity {
 
         populateHomeTimeline();
     }
+
+
 
     private void loadMoreData() {
         client.getNextPageOfTweets(new JsonHttpResponseHandler() {
