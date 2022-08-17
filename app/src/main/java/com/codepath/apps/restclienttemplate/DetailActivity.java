@@ -18,6 +18,7 @@ public class DetailActivity extends AppCompatActivity {
     TextView Name;
     TextView UserName;
     TextView Description;
+    ImageView Images;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,7 @@ public class DetailActivity extends AppCompatActivity {
         Name = findViewById(R.id.Name);
         UserName = findViewById(R.id.UserName);
         Description = findViewById(R.id.Description);
+        Images = findViewById(R.id.Image1);
 
         Tweet tweet = Parcels.unwrap(getIntent().getParcelableExtra("tweets"));
 
@@ -38,6 +40,11 @@ public class DetailActivity extends AppCompatActivity {
                 .load(tweet.user.profileImageUrl)
                 .transform(new RoundedCorners(50))
                 .into(Image);
+        if (!tweet.media.getMediaUrl().isEmpty()){
+            Glide.with(this)
+                    .load(tweet.media.getMediaUrl())
+                    .into(Images);
+        }
 
     }
 }

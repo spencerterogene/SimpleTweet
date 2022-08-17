@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/ScreenName"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="10dp"
         android:layout_toEndOf="@+id/ProfileImage"
         tools:text="This is my tweet!!"
         android:autoLink="all"
@@ -60,20 +60,20 @@
     <TextView
         android:id="@+id/comment"
         android:text="5"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/divider"
+        android:layout_below="@+id/Image"
         app:drawableLeftCompat="@drawable/comment"
         />
 
     <TextView
         android:id="@+id/repeat"
         android:text="5"
-        android:layout_below="@+id/divider"
+        android:layout_below="@+id/Image"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:drawableLeftCompat="@drawable/repeat"
@@ -82,10 +82,10 @@
 
     <TextView
         android:id="@+id/coeur"
-        android:layout_below="@+id/divider"
+        android:layout_below="@+id/Image"
         android:layout_width="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:text="5"
         android:layout_height="wrap_content"
         android:layout_toEndOf="@+id/repeat"
@@ -95,27 +95,31 @@
     <TextView
         android:id="@+id/share"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:text="5"
-        android:layout_below="@+id/divider"
+        android:layout_below="@+id/Image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toEndOf="@+id/coeur"
         app:drawableLeftCompat="@drawable/share"
         />
 
-    <View
-        android:id="@+id/divider"
-        android:layout_marginTop="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@+id/ProfileImage"
-        android:background="?android:attr/listDivider"
-        />
+    <ImageView
+        android:id="@+id/Image"
+        android:layout_width="500dp"
+        android:layout_height="100dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="67dp"
+        android:layout_below="@+id/Body"
+        tools:srcCompat="@tools:sample/avatars" />
+
 
     <View
         android:id="@+id/divider1"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_below="@+id/comment"

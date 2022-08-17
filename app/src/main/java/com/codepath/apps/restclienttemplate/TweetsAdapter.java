@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 
 import java.util.ArrayList;
@@ -70,6 +71,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         TextView ScreenName;
         TextView username;
         TextView Date;
+        ImageView Image;
 
         public ViewHolder(@NonNull View itemView, final OnItemClickListener clickListener) {
             super(itemView);
@@ -78,6 +80,8 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             ScreenName = itemView.findViewById(R.id.ScreenName);
             username = itemView.findViewById(R.id.username);
             Date = itemView.findViewById(R.id.Date);
+            Image = itemView.findViewById(R.id.Image);
+
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -93,7 +97,15 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             ScreenName.setText(tweet.user.name);
             username.setText("@"+tweet.user.screenName);
             Date.setText(tweet.getCreatedAt());
-            Glide.with(context).load(tweet.user.profileImageUrl).into(ProfileImage);
+            Glide.with(context).load(tweet.user.profileImageUrl)
+                    .transform(new RoundedCorners(50))
+                    .into(ProfileImage);
+
+           if (!tweet.media.getMediaUrl().isEmpty()){
+               Glide.with(context)
+                       .load(tweet.media.getMediaUrl())
+                       .into(Image);
+           }
         }
     }
 }
