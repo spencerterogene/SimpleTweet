@@ -26,6 +26,7 @@ public class DetailActivity extends AppCompatActivity {
     ImageView Images;
     TextView Favorite_Count;
     TextView Retweet_Count;
+    TextView Favorite_Count2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,7 @@ public class DetailActivity extends AppCompatActivity {
         Images = findViewById(R.id.Image1);
         Favorite_Count = findViewById(R.id.coeur);
         Retweet_Count = findViewById(R.id.repeat);
+        Favorite_Count2 = findViewById(R.id.coeur1);
 
         Tweet tweet = Parcels.unwrap(getIntent().getParcelableExtra("tweets"));
 
@@ -58,20 +60,32 @@ public class DetailActivity extends AppCompatActivity {
                 .transform(new RoundedCorners(50))
                 .into(Image);
 
+        if (tweet.favorite){
+            Favorite_Count.setVisibility(View.INVISIBLE);
+            Favorite_Count2.setVisibility(View.VISIBLE);
+        }else{
+            Favorite_Count.setVisibility(View.VISIBLE);
+            Favorite_Count2.setVisibility(View.INVISIBLE);
+        }
+
         Favorite_Count.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int var = Integer.parseInt(tweet.favorite_count);
-                if (!tweet.retweet){
-                    ++var;
-                    Favorite_Count.setText(String.valueOf(var));
-                    tweet.retweet=true;
-                }else{
-                    ++var;
-                    Favorite_Count.setText(String.valueOf(--var));
-                    tweet.retweet=true;
-
-                }
+                ++var;
+                Favorite_Count2.setText(String.valueOf(var));
+                Favorite_Count.setVisibility(View.INVISIBLE);
+                Favorite_Count2.setVisibility(View.VISIBLE);
+            }
+        });
+        Favorite_Count2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int var = Integer.parseInt(tweet.favorite_count);
+                --var;
+                Favorite_Count.setText(String.valueOf(var));
+                Favorite_Count.setVisibility(View.VISIBLE);
+                Favorite_Count2.setVisibility(View.INVISIBLE);
             }
         });
         if (!tweet.media.getMediaUrl().isEmpty()){

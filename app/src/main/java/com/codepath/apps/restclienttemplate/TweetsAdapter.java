@@ -74,6 +74,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         ImageView Image;
         TextView Favorite_Count;
         TextView Retweet_Count;
+        TextView Favorite_Count2;
 
 
         public ViewHolder(@NonNull View itemView, final OnItemClickListener clickListener) {
@@ -85,6 +86,9 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             Date = itemView.findViewById(R.id.Date);
             Image = itemView.findViewById(R.id.Image);
             Favorite_Count = itemView.findViewById(R.id.coeur);
+            Favorite_Count2 = itemView.findViewById(R.id.coeur1);
+
+
             Retweet_Count = itemView.findViewById(R.id.repeat);
 
 
@@ -104,6 +108,8 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             username.setText("@"+tweet.user.screenName);
             Date.setText(tweet.getCreatedAt());
             Favorite_Count.setText(tweet.favorite_count);
+            Favorite_Count2 = itemView.findViewById(R.id.coeur1);
+
             Retweet_Count.setText(tweet.retweet_count);
             Glide.with(context).load(tweet.user.profileImageUrl)
                     .transform(new RoundedCorners(50))
@@ -116,23 +122,36 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                        .into(Image);
            }
 
-
+            if (tweet.favorite){
+                Favorite_Count.setVisibility(View.INVISIBLE);
+                Favorite_Count2.setVisibility(View.VISIBLE);
+            }else{
+                Favorite_Count.setVisibility(View.VISIBLE);
+                Favorite_Count2.setVisibility(View.INVISIBLE);
+            }
            Favorite_Count.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View view) {
                    int var = Integer.parseInt(tweet.favorite_count);
-                   if (!tweet.retweet){
-                       ++var;
-                       Favorite_Count.setText(String.valueOf(var));
-                       tweet.retweet=true;
-                   }else{
-                       ++var;
-                       Favorite_Count.setText(String.valueOf(--var));
-                       tweet.retweet=true;
-
-                   }
+                   ++var;
+                   tweet.retweet=true;
+                   Favorite_Count2.setText(String.valueOf(var));
+                   Favorite_Count.setVisibility(View.INVISIBLE);
+                   Favorite_Count2.setVisibility(View.VISIBLE);
                }
            });
+            Favorite_Count2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int var = Integer.parseInt(tweet.favorite_count);
+
+                    tweet.retweet=true;
+                    Favorite_Count.setText(String.valueOf(var));
+                    Favorite_Count.setVisibility(View.VISIBLE);
+                    Favorite_Count2.setVisibility(View.INVISIBLE);
+                }
+            });
+
         }
 
     }

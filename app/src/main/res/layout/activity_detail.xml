@@ -97,6 +97,17 @@
         app:drawableLeftCompat="@drawable/coeur"
         />
 
+        <TextView
+            android:id="@+id/coeur1"
+            android:layout_below="@+id/divider"
+            android:layout_width="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/repeat"
+            app:drawableLeftCompat="@drawable/cards_heart"
+            />
+
     <TextView
         android:id="@+id/share"
         android:layout_marginStart="50dp"
