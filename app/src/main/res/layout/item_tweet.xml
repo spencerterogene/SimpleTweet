@@ -59,7 +59,6 @@
 
     <TextView
         android:id="@+id/comment"
-        android:text="5"
         android:layout_marginStart="50dp"
         android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
@@ -70,7 +69,6 @@
 
     <TextView
         android:id="@+id/repeat"
-        android:text="5"
         android:layout_below="@+id/Image"
         android:layout_marginStart="50dp"
         android:layout_marginTop="10dp"
@@ -86,7 +84,6 @@
         android:layout_width="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginTop="10dp"
-        android:text="5"
         android:layout_height="wrap_content"
         android:layout_toEndOf="@+id/repeat"
         app:drawableLeftCompat="@drawable/coeur"
@@ -96,7 +93,6 @@
         android:id="@+id/share"
         android:layout_marginStart="50dp"
         android:layout_marginTop="10dp"
-        android:text="5"
         android:layout_below="@+id/Image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -107,12 +103,11 @@
     <ImageView
         android:id="@+id/Image"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="200dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="4dp"
+        android:layout_marginStart="0dp"
         android:layout_marginTop="7dp"
-        android:layout_marginEnd="67dp"
         android:layout_below="@+id/Body"
         tools:srcCompat="@tools:sample/avatars" />
 

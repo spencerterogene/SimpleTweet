@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,6 +24,8 @@ public class DetailActivity extends AppCompatActivity {
     TextView UserName;
     TextView Description;
     ImageView Images;
+    TextView Favorite_Count;
+    TextView Retweet_Count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,13 +38,15 @@ public class DetailActivity extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.arrow_left_thin);
 
         getSupportActionBar().setLogo(R.drawable.twitter);
-        getSupportActionBar().setTitle("    Tweet");
+        getSupportActionBar().setTitle("       Tweet");
 
         Image = findViewById(R.id.Image);
         Name = findViewById(R.id.Name);
         UserName = findViewById(R.id.UserName);
         Description = findViewById(R.id.Description);
         Images = findViewById(R.id.Image1);
+        Favorite_Count = findViewById(R.id.coeur);
+        Retweet_Count = findViewById(R.id.repeat);
 
         Tweet tweet = Parcels.unwrap(getIntent().getParcelableExtra("tweets"));
 
@@ -52,12 +57,31 @@ public class DetailActivity extends AppCompatActivity {
                 .load(tweet.user.profileImageUrl)
                 .transform(new RoundedCorners(50))
                 .into(Image);
+
+        Favorite_Count.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int var = Integer.parseInt(tweet.favorite_count);
+                if (!tweet.retweet){
+                    ++var;
+                    Favorite_Count.setText(String.valueOf(var));
+                    tweet.retweet=true;
+                }else{
+                    ++var;
+                    Favorite_Count.setText(String.valueOf(--var));
+                    tweet.retweet=true;
+
+                }
+            }
+        });
         if (!tweet.media.getMediaUrl().isEmpty()){
             Glide.with(this)
                     .load(tweet.media.getMediaUrl())
                     .transform(new RoundedCorners(50))
                     .into(Images);
         }
+
+
 
     }
     @Override
@@ -68,5 +92,6 @@ public class DetailActivity extends AppCompatActivity {
 
         return true;
     }
+
 
 }

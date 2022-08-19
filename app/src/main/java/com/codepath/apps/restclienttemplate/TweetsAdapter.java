@@ -72,6 +72,9 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         TextView username;
         TextView Date;
         ImageView Image;
+        TextView Favorite_Count;
+        TextView Retweet_Count;
+
 
         public ViewHolder(@NonNull View itemView, final OnItemClickListener clickListener) {
             super(itemView);
@@ -81,6 +84,8 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             username = itemView.findViewById(R.id.username);
             Date = itemView.findViewById(R.id.Date);
             Image = itemView.findViewById(R.id.Image);
+            Favorite_Count = itemView.findViewById(R.id.coeur);
+            Retweet_Count = itemView.findViewById(R.id.repeat);
 
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -92,11 +97,14 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
         }
 
+
         public void bind(Tweet tweet) {
             Body.setText(tweet.Body);
             ScreenName.setText(tweet.user.name);
             username.setText("@"+tweet.user.screenName);
             Date.setText(tweet.getCreatedAt());
+            Favorite_Count.setText(tweet.favorite_count);
+            Retweet_Count.setText(tweet.retweet_count);
             Glide.with(context).load(tweet.user.profileImageUrl)
                     .transform(new RoundedCorners(50))
                     .into(ProfileImage);
@@ -107,6 +115,25 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                        .transform(new RoundedCorners(50))
                        .into(Image);
            }
+
+
+           Favorite_Count.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View view) {
+                   int var = Integer.parseInt(tweet.favorite_count);
+                   if (!tweet.retweet){
+                       ++var;
+                       Favorite_Count.setText(String.valueOf(var));
+                       tweet.retweet=true;
+                   }else{
+                       ++var;
+                       Favorite_Count.setText(String.valueOf(--var));
+                       tweet.retweet=true;
+
+                   }
+               }
+           });
         }
+
     }
 }

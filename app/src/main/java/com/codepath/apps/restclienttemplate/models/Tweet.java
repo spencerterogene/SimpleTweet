@@ -15,6 +15,10 @@ public class Tweet {
     public String createdAt;
     public  long id;
     public User user;
+    public boolean retweet;
+    public boolean favorite;
+    public String favorite_count;
+    public String retweet_count;
 
     public Tweet(){}
     public  Media media;
@@ -27,7 +31,10 @@ public class Tweet {
         tweet.createdAt = jsonObject.getString("created_at");
         tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
         tweet.media = Media.fromJson(jsonObject.getJSONObject("entities"));
-
+        tweet.favorite_count = jsonObject.getString("favorite_count");
+        tweet.retweet_count = jsonObject.getString("retweet_count");
+        tweet.retweet = jsonObject.getBoolean("retweeted");
+        tweet.favorite = jsonObject.getBoolean("favorited");
         return tweet;
     }
 
