@@ -104,6 +104,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
            if (!tweet.media.getMediaUrl().isEmpty()){
                Glide.with(context)
                        .load(tweet.media.getMediaUrl())
+                       .transform(new RoundedCorners(50))
                        .into(Image);
            }
         }

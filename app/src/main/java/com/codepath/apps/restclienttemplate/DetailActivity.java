@@ -1,8 +1,12 @@
 package com.codepath.apps.restclienttemplate;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,6 +29,14 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
+        Toolbar toolbar =  findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.arrow_left_thin);
+
+        getSupportActionBar().setLogo(R.drawable.twitter);
+        getSupportActionBar().setTitle("    Tweet");
+
         Image = findViewById(R.id.Image);
         Name = findViewById(R.id.Name);
         UserName = findViewById(R.id.UserName);
@@ -43,8 +55,18 @@ public class DetailActivity extends AppCompatActivity {
         if (!tweet.media.getMediaUrl().isEmpty()){
             Glide.with(this)
                     .load(tweet.media.getMediaUrl())
+                    .transform(new RoundedCorners(50))
                     .into(Images);
         }
 
     }
+    @Override
+    public boolean onOptionsItemSelected (MenuItem menuItem) {
+        int homeAsUp = R.id.homeAsUp;
+            Intent intent = new Intent(DetailActivity.this,TimelineActivity.class);
+            startActivity(intent);
+
+        return true;
+    }
+
 }

@@ -67,7 +67,7 @@
     <TextView
         android:id="@+id/comment"
         android:text="5"
-        android:layout_marginStart="100dp"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
