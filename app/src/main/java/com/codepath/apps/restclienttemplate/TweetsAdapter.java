@@ -13,6 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.codepath.apps.restclienttemplate.models.Tweet;
+import com.volokh.danylo.video_player_manager.manager.PlayerItemChangeListener;
+import com.volokh.danylo.video_player_manager.manager.SingleVideoPlayerManager;
+import com.volokh.danylo.video_player_manager.manager.VideoPlayerManager;
+import com.volokh.danylo.video_player_manager.meta.MetaData;
+import com.volokh.danylo.video_player_manager.ui.SimpleMainThreadMediaPlayerListener;
+import com.volokh.danylo.video_player_manager.ui.VideoPlayerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,6 +81,10 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         TextView Favorite_Count;
         TextView Retweet_Count;
         TextView Favorite_Count2;
+        TextView retweeted;
+        TextView retweeted1;
+        VideoPlayerView mVideoPlayer_1;
+        ImageView mVideoCover;
 
 
         public ViewHolder(@NonNull View itemView, final OnItemClickListener clickListener) {
@@ -87,8 +97,10 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             Image = itemView.findViewById(R.id.Image);
             Favorite_Count = itemView.findViewById(R.id.coeur);
             Favorite_Count2 = itemView.findViewById(R.id.coeur1);
-
-
+            retweeted = itemView.findViewById(R.id.repeat);
+            retweeted1 = itemView.findViewById(R.id.repeat1);
+            mVideoPlayer_1 = itemView.findViewById(R.id.video_player_1);
+            mVideoCover = itemView.findViewById(R.id.video_cover_1);
             Retweet_Count = itemView.findViewById(R.id.repeat);
 
 
@@ -109,8 +121,16 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             Date.setText(tweet.getCreatedAt());
             Favorite_Count.setText(tweet.favorite_count);
             Favorite_Count2 = itemView.findViewById(R.id.coeur1);
+            retweeted = itemView.findViewById(R.id.repeat);
+            retweeted1 = itemView.findViewById(R.id.repeat1);
+            mVideoPlayer_1 = itemView.findViewById(R.id.video_player_1);
+            mVideoCover = itemView.findViewById(R.id.video_cover_1);
 
-            Retweet_Count.setText(tweet.retweet_count);
+
+
+
+            retweeted.setText(tweet.retweet_count);
+            retweeted1.setText(tweet.retweet_count);
             Glide.with(context).load(tweet.user.profileImageUrl)
                     .transform(new RoundedCorners(50))
                     .into(ProfileImage);
@@ -144,13 +164,72 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                 @Override
                 public void onClick(View view) {
                     int var = Integer.parseInt(tweet.favorite_count);
-
                     tweet.retweet=true;
                     Favorite_Count.setText(String.valueOf(var));
                     Favorite_Count.setVisibility(View.VISIBLE);
                     Favorite_Count2.setVisibility(View.INVISIBLE);
                 }
             });
+
+            if (tweet.retweet){
+                retweeted.setVisibility(View.INVISIBLE);
+                retweeted1.setVisibility(View.VISIBLE);
+            }else{
+                retweeted.setVisibility(View.VISIBLE);
+                retweeted1.setVisibility(View.INVISIBLE);
+            }
+
+            retweeted.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int var = Integer.parseInt(tweet.retweet_count);
+                    var++;
+                    tweet.retweet=true;
+                    retweeted.setText(String.valueOf(var));
+                    retweeted.setVisibility(View.INVISIBLE);
+                    retweeted1.setVisibility(View.VISIBLE);
+
+                }
+            });
+
+            retweeted1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int var = Integer.parseInt(tweet.retweet_count);
+                    tweet.retweet=true;
+                    retweeted1.setText(String.valueOf(var));
+                    retweeted.setVisibility(View.VISIBLE);
+                    retweeted1.setVisibility(View.INVISIBLE);
+                }
+            });
+
+             VideoPlayerManager<MetaData> mVideoPlayerManager = new SingleVideoPlayerManager(new PlayerItemChangeListener() {
+                @Override
+                public void onPlayerItemChanged(MetaData metaData) {
+
+                }
+            });
+
+            mVideoPlayer_1.addMediaPlayerListener(new SimpleMainThreadMediaPlayerListener(){
+                @Override
+                public void onVideoPreparedMainThread() {
+                    // We hide the cover when video is prepared. Playback is about to start
+                    mVideoCover.setVisibility(View.INVISIBLE);
+                }
+
+                @Override
+                public void onVideoStoppedMainThread() {
+                    // We show the cover when video is stopped
+                    mVideoCover.setVisibility(View.VISIBLE);
+                }
+
+                @Override
+                public void onVideoCompletionMainThread() {
+                    // We show the cover when video is completed
+                    mVideoCover.setVisibility(View.VISIBLE);
+                }
+            });
+
 
         }
 

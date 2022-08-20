@@ -27,6 +27,9 @@ public class DetailActivity extends AppCompatActivity {
     TextView Favorite_Count;
     TextView Retweet_Count;
     TextView Favorite_Count2;
+    TextView retweeted;
+    TextView retweeted1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,12 +52,18 @@ public class DetailActivity extends AppCompatActivity {
         Favorite_Count = findViewById(R.id.coeur);
         Retweet_Count = findViewById(R.id.repeat);
         Favorite_Count2 = findViewById(R.id.coeur1);
+        retweeted = findViewById(R.id.repeat);
+        retweeted1 = findViewById(R.id.repeat1);
+
 
         Tweet tweet = Parcels.unwrap(getIntent().getParcelableExtra("tweets"));
 
         Name.setText(tweet.getUser().getName());
         UserName.setText(tweet.getUser().getScreenName());
         Description.setText(tweet.getBody());
+        retweeted.setText(tweet.retweet_count);
+        retweeted1.setText(tweet.retweet_count);
+
         Glide.with(this)
                 .load(tweet.user.profileImageUrl)
                 .transform(new RoundedCorners(50))
@@ -73,6 +82,8 @@ public class DetailActivity extends AppCompatActivity {
             public void onClick(View view) {
                 int var = Integer.parseInt(tweet.favorite_count);
                 ++var;
+                tweet.retweet=true;
+
                 Favorite_Count2.setText(String.valueOf(var));
                 Favorite_Count.setVisibility(View.INVISIBLE);
                 Favorite_Count2.setVisibility(View.VISIBLE);
@@ -82,12 +93,46 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 int var = Integer.parseInt(tweet.favorite_count);
-                --var;
                 Favorite_Count.setText(String.valueOf(var));
                 Favorite_Count.setVisibility(View.VISIBLE);
                 Favorite_Count2.setVisibility(View.INVISIBLE);
+                tweet.retweet=true;
+
             }
         });
+
+        if (tweet.retweet){
+            retweeted.setVisibility(View.INVISIBLE);
+            retweeted1.setVisibility(View.VISIBLE);
+        }else{
+            retweeted.setVisibility(View.VISIBLE);
+            retweeted1.setVisibility(View.INVISIBLE);
+        }
+
+        retweeted.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int var = Integer.parseInt(tweet.retweet_count);
+                var++;
+                tweet.retweet=true;
+                retweeted.setText(String.valueOf(var));
+                retweeted.setVisibility(View.INVISIBLE);
+                retweeted1.setVisibility(View.VISIBLE);
+
+            }
+        });
+
+        retweeted1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int var = Integer.parseInt(tweet.retweet_count);
+                tweet.retweet=true;
+                retweeted1.setText(String.valueOf(var));
+                retweeted.setVisibility(View.VISIBLE);
+                retweeted1.setVisibility(View.INVISIBLE);
+            }
+        });
+
         if (!tweet.media.getMediaUrl().isEmpty()){
             Glide.with(this)
                     .load(tweet.media.getMediaUrl())

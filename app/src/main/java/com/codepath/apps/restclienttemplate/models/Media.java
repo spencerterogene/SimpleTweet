@@ -10,6 +10,7 @@ public class Media {
     String mediaUrl;
 
 
+
     public String getMediaUrl(){
         return mediaUrl;
     }

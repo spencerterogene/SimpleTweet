@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:titleTextColor="#FFFFFF"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
         />
 
     <RelativeLayout
@@ -87,6 +86,17 @@
         />
 
     <TextView
+        android:id="@+id/repeat1"
+        android:layout_below="@+id/divider"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:drawableLeftCompat="@drawable/repeat"
+        android:layout_toEndOf="@+id/comment"
+        />
+
+    <TextView
         android:id="@+id/coeur"
         android:layout_marginTop="5dp"
         android:layout_below="@+id/divider"
@@ -102,7 +112,7 @@
             android:layout_below="@+id/divider"
             android:layout_width="wrap_content"
             android:layout_marginStart="50dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/repeat"
             app:drawableLeftCompat="@drawable/cards_heart"
@@ -118,6 +128,8 @@
         android:layout_toEndOf="@+id/coeur"
         app:drawableLeftCompat="@drawable/share"
         />
+
+
 
     <View
         android:id="@+id/divider"
