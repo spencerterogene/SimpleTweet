@@ -82,7 +82,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         TextView Retweet_Count;
         TextView Favorite_Count2;
         TextView retweeted;
-        TextView retweeted1;
+        TextView Retweet_Count1;
         VideoPlayerView mVideoPlayer_1;
         ImageView mVideoCover;
 
@@ -98,7 +98,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             Favorite_Count = itemView.findViewById(R.id.coeur);
             Favorite_Count2 = itemView.findViewById(R.id.coeur1);
             retweeted = itemView.findViewById(R.id.repeat);
-            retweeted1 = itemView.findViewById(R.id.repeat1);
+            Retweet_Count1 = itemView.findViewById(R.id.repeat1);
             mVideoPlayer_1 = itemView.findViewById(R.id.video_player_1);
             mVideoCover = itemView.findViewById(R.id.video_cover_1);
             Retweet_Count = itemView.findViewById(R.id.repeat);
@@ -122,7 +122,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             Favorite_Count.setText(tweet.favorite_count);
             Favorite_Count2 = itemView.findViewById(R.id.coeur1);
             retweeted = itemView.findViewById(R.id.repeat);
-            retweeted1 = itemView.findViewById(R.id.repeat1);
+            Retweet_Count1 = itemView.findViewById(R.id.repeat1);
             mVideoPlayer_1 = itemView.findViewById(R.id.video_player_1);
             mVideoCover = itemView.findViewById(R.id.video_cover_1);
 
@@ -130,7 +130,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
 
             retweeted.setText(tweet.retweet_count);
-            retweeted1.setText(tweet.retweet_count);
+            Retweet_Count1.setText(tweet.retweet_count);
             Glide.with(context).load(tweet.user.profileImageUrl)
                     .transform(new RoundedCorners(50))
                     .into(ProfileImage);
@@ -172,34 +172,34 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             });
 
             if (tweet.retweet){
-                retweeted.setVisibility(View.INVISIBLE);
-                retweeted1.setVisibility(View.VISIBLE);
+                Retweet_Count.setVisibility(View.INVISIBLE);
+                Retweet_Count1.setVisibility(View.VISIBLE);
             }else{
-                retweeted.setVisibility(View.VISIBLE);
-                retweeted1.setVisibility(View.INVISIBLE);
+                Retweet_Count.setVisibility(View.VISIBLE);
+                Retweet_Count1.setVisibility(View.INVISIBLE);
             }
 
-            retweeted.setOnClickListener(new View.OnClickListener() {
+            Retweet_Count.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     int var = Integer.parseInt(tweet.retweet_count);
                     var++;
                     tweet.retweet=true;
-                    retweeted.setText(String.valueOf(var));
-                    retweeted.setVisibility(View.INVISIBLE);
-                    retweeted1.setVisibility(View.VISIBLE);
+                    Retweet_Count.setText(String.valueOf(var));
+                    Retweet_Count.setVisibility(View.INVISIBLE);
+                    Retweet_Count1.setVisibility(View.VISIBLE);
 
                 }
             });
 
-            retweeted1.setOnClickListener(new View.OnClickListener() {
+            Retweet_Count1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     int var = Integer.parseInt(tweet.retweet_count);
                     tweet.retweet=true;
-                    retweeted1.setText(String.valueOf(var));
+                    Retweet_Count1.setText(String.valueOf(var));
                     retweeted.setVisibility(View.VISIBLE);
-                    retweeted1.setVisibility(View.INVISIBLE);
+                    Retweet_Count1.setVisibility(View.INVISIBLE);
                 }
             });
 

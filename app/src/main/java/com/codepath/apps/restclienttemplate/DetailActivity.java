@@ -28,7 +28,8 @@ public class DetailActivity extends AppCompatActivity {
     TextView Retweet_Count;
     TextView Favorite_Count2;
     TextView retweeted;
-    TextView retweeted1;
+    TextView Retweet_Count1;
+    TextView Heure;
 
 
     @Override
@@ -53,7 +54,9 @@ public class DetailActivity extends AppCompatActivity {
         Retweet_Count = findViewById(R.id.repeat);
         Favorite_Count2 = findViewById(R.id.coeur1);
         retweeted = findViewById(R.id.repeat);
-        retweeted1 = findViewById(R.id.repeat1);
+        Retweet_Count1 = findViewById(R.id.repeat1);
+        Heure = findViewById(R.id.heure);
+
 
 
         Tweet tweet = Parcels.unwrap(getIntent().getParcelableExtra("tweets"));
@@ -62,7 +65,9 @@ public class DetailActivity extends AppCompatActivity {
         UserName.setText(tweet.getUser().getScreenName());
         Description.setText(tweet.getBody());
         retweeted.setText(tweet.retweet_count);
-        retweeted1.setText(tweet.retweet_count);
+        Retweet_Count1.setText(tweet.retweet_count);
+        Heure.setText(tweet.getCreatedAt1());
+
 
         Glide.with(this)
                 .load(tweet.user.profileImageUrl)
@@ -102,34 +107,34 @@ public class DetailActivity extends AppCompatActivity {
         });
 
         if (tweet.retweet){
-            retweeted.setVisibility(View.INVISIBLE);
-            retweeted1.setVisibility(View.VISIBLE);
+            Retweet_Count.setVisibility(View.INVISIBLE);
+            Retweet_Count1.setVisibility(View.VISIBLE);
         }else{
-            retweeted.setVisibility(View.VISIBLE);
-            retweeted1.setVisibility(View.INVISIBLE);
+            Retweet_Count.setVisibility(View.VISIBLE);
+            Retweet_Count1.setVisibility(View.INVISIBLE);
         }
 
-        retweeted.setOnClickListener(new View.OnClickListener() {
+        Retweet_Count.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int var = Integer.parseInt(tweet.retweet_count);
                 var++;
                 tweet.retweet=true;
-                retweeted.setText(String.valueOf(var));
-                retweeted.setVisibility(View.INVISIBLE);
-                retweeted1.setVisibility(View.VISIBLE);
+                Retweet_Count.setText(String.valueOf(var));
+                Retweet_Count.setVisibility(View.INVISIBLE);
+                Retweet_Count1.setVisibility(View.VISIBLE);
 
             }
         });
 
-        retweeted1.setOnClickListener(new View.OnClickListener() {
+        Retweet_Count1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int var = Integer.parseInt(tweet.retweet_count);
                 tweet.retweet=true;
-                retweeted1.setText(String.valueOf(var));
+                Retweet_Count1.setText(String.valueOf(var));
                 retweeted.setVisibility(View.VISIBLE);
-                retweeted1.setVisibility(View.INVISIBLE);
+                Retweet_Count1.setVisibility(View.INVISIBLE);
             }
         });
 

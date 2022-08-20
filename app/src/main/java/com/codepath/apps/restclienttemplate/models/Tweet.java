@@ -55,6 +55,11 @@ public class Tweet {
         return  "."+ TimeFormatter.getTimeDifference(createdAt);
     }
 
+    public String getCreatedAt1() {
+        return TimeFormatter.getTimeStamp(createdAt);
+    }
+
+
     public long getId() {
         return id;
     }
