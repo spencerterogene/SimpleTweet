@@ -45,33 +45,34 @@ public class ComposeActivity extends AppCompatActivity {
                     Toast.makeText(ComposeActivity.this, "Sorry, your tweet cannot be Empty", Toast.LENGTH_LONG).show();
                     return;
                 }
-                if (tweetContent.length()>MAX_TWEET_LENGTH){
+                if (tweetContent.length()>MAX_TWEET_LENGTH) {
                     Toast.makeText(ComposeActivity.this, "Sorry, your tweet is too long", Toast.LENGTH_LONG).show();
-                    client.publishTweet(tweetContent, new JsonHttpResponseHandler() {
-                        @Override
-                        public void onSuccess(int statusCode, Headers headers, JSON json) {
-                            Log.i(TAG,"on Success to publis tweet");
-                            try {
-                                Tweet tweet = Tweet.fromJson(json.jsonObject);
-                                Log.i(TAG, "publish tweet says: "+tweet.Body);
-                                Intent intent = new Intent();
-                                intent.putExtra("tweet", Parcels.wrap(tweet));
-                                setResult(RESULT_OK,intent);
-                                finish();
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
-                            Log.e(TAG,"onFailure to publish tweet",throwable);
-                        }
-                    });
+                    return;
                 }
-                Toast.makeText(ComposeActivity.this, tweetContent, Toast.LENGTH_LONG).show();
+                client.publishTweet(tweetContent, new JsonHttpResponseHandler() {
+                    @Override
+                    public void onSuccess(int statusCode, Headers headers, JSON json) {
+                        Log.i(TAG,"on Success to publis tweet");
+                        try {
+                            Tweet tweet = Tweet.fromJson(json.jsonObject);
+                            Log.i(TAG, "publish tweet says: "+tweet.Body);
+                            Intent intent = new Intent();
+                            intent.putExtra("tweet", Parcels.wrap(tweet));
+                            setResult(RESULT_OK,intent);
+                            finish();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
 
-            }
+                    @Override
+                    public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
+                        Log.e(TAG,"onFailure to publish tweet",throwable);
+                    }
+                });
+                }
+
+
         });
     }
 }

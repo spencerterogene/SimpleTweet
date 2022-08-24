@@ -1,12 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
-
-
-
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -50,5 +42,18 @@
         android:layout_marginStart="0dp"
         android:layout_marginTop="0dp" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatintbut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="16dp"
+        android:backgroundTint="#1DA1fD"
+        android:src="@drawable/ic_add_tweet"
+        app:layout_anchor="@id/Tweets"
+        app:layout_anchorGravity="bottom|right|end" />
+
+
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
-</LinearLayout>

@@ -1,5 +1,11 @@
 package com.codepath.apps.restclienttemplate.models;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
 import com.codepath.apps.restclienttemplate.TimeFormatter;
 
 import org.json.JSONArray;
@@ -10,17 +16,33 @@ import org.parceler.Parcel;
 import java.util.ArrayList;
 import java.util.List;
 @Parcel
+@Entity(foreignKeys = @ForeignKey(entity = User.class,parentColumns = "id",childColumns = "userId"))
 public class Tweet {
+    @ColumnInfo
     public String Body;
+
+    @ColumnInfo
     public String createdAt;
+
+    @ColumnInfo
+    @PrimaryKey
     public  long id;
+    @Ignore
     public User user;
+
+    @ColumnInfo
+    public long userId;
+    @ColumnInfo
     public boolean retweet;
+    @ColumnInfo
     public boolean favorite;
+    @ColumnInfo
     public String favorite_count;
+    @ColumnInfo
     public String retweet_count;
 
     public Tweet(){}
+    @Ignore
     public  Media media;
 
 
@@ -29,7 +51,9 @@ public class Tweet {
         tweet.Body = jsonObject.getString("text");
         tweet.id = jsonObject.getLong("id");
         tweet.createdAt = jsonObject.getString("created_at");
-        tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
+        User user = User.fromJson(jsonObject.getJSONObject("user"));
+        tweet.userId = user.id;
+        tweet.user = user;
         tweet.media = Media.fromJson(jsonObject.getJSONObject("entities"));
         tweet.favorite_count = jsonObject.getString("favorite_count");
         tweet.retweet_count = jsonObject.getString("retweet_count");
