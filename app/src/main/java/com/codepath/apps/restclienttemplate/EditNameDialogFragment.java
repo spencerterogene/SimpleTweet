@@ -74,7 +74,6 @@ public class EditNameDialogFragment extends DialogFragment {
                     Toast.makeText(context, "Sorry, your tweet is too long", Toast.LENGTH_LONG).show();
                     return;
                 }
-                Toast.makeText(context,tweetContent , Toast.LENGTH_LONG).show();
 
                 client.publishTweet(tweetContent, new JsonHttpResponseHandler() {
                     @Override
@@ -113,7 +112,7 @@ public class EditNameDialogFragment extends DialogFragment {
         getDialog().getWindow().setSoftInputMode(
 
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-        getDialog().getWindow().setLayout(1000,2000);
+        getDialog().getWindow().setLayout(700,900);
 
     }
 }
