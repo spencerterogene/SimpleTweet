@@ -96,8 +96,7 @@ public class TimelineActivity extends AppCompatActivity {
         floatingBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view ) {
-                Intent intent = new Intent(TimelineActivity.this,ComposeActivity.class);
-                startActivityForResult(intent,REQUEST_CODE);
+               showEditDialog();
             }
         });
         scrollListener = new EndlessRecyclerViewScrollListener(layoutManager) {

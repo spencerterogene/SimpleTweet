@@ -59,7 +59,7 @@
 
     <TextView
         android:id="@+id/comment"
-        android:layout_marginStart="50dp"
+        android:layout_marginStart="70dp"
         android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -70,7 +70,7 @@
     <TextView
         android:id="@+id/repeat"
         android:layout_below="@+id/Image"
-        android:layout_marginStart="50dp"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="10dp"
         android:layout_width="24dp"
         android:layout_height="24dp"
@@ -81,7 +81,7 @@
     <TextView
         android:id="@+id/repeat1"
         android:layout_below="@+id/Image"
-        android:layout_marginStart="50dp"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="10dp"
         android:layout_width="24dp"
         android:layout_height="24dp"
@@ -93,7 +93,7 @@
         android:id="@+id/coeur"
         android:layout_below="@+id/Image"
         android:layout_width="wrap_content"
-        android:layout_marginStart="50dp"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="10dp"
         android:layout_height="wrap_content"
         android:layout_toEndOf="@+id/repeat"
@@ -104,23 +104,14 @@
         android:id="@+id/coeur1"
         android:layout_below="@+id/Image"
         android:layout_width="wrap_content"
-        android:layout_marginStart="50dp"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="10dp"
         android:layout_height="wrap_content"
         android:layout_toEndOf="@+id/repeat"
         app:drawableLeftCompat="@drawable/cards_heart"
         />
 
-    <TextView
-        android:id="@+id/share"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/Image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/coeur"
-        app:drawableLeftCompat="@drawable/share"
-        />
+
 
 
 

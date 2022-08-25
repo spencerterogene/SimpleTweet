@@ -74,6 +74,8 @@ public class EditNameDialogFragment extends DialogFragment {
                     Toast.makeText(context, "Sorry, your tweet is too long", Toast.LENGTH_LONG).show();
                     return;
                 }
+                Toast.makeText(context,tweetContent , Toast.LENGTH_LONG).show();
+
                 client.publishTweet(tweetContent, new JsonHttpResponseHandler() {
                     @Override
                     public void onSuccess(int statusCode, Headers headers, JSON json) {
@@ -81,10 +83,6 @@ public class EditNameDialogFragment extends DialogFragment {
                         try {
                             Tweet tweet = Tweet.fromJson(json.jsonObject);
                             Log.i(TAG, "publish tweet says: "+tweet.Body);
-//                            Intent intent = new Intent();
-//                            intent.putExtra("tweet", Parcels.wrap(tweet));
-//                            setResult(RESULT_OK,intent);
-//                            finish();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -115,7 +113,7 @@ public class EditNameDialogFragment extends DialogFragment {
         getDialog().getWindow().setSoftInputMode(
 
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-        getDialog().getWindow().setLayout(50,50);
+        getDialog().getWindow().setLayout(1000,2000);
 
     }
 }
