@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.WindowInsets;
 import android.widget.Toast;
 
+import com.codepath.apps.restclienttemplate.models.Media;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 import com.codepath.apps.restclienttemplate.models.TweetDao;
 import com.codepath.apps.restclienttemplate.models.TweetWithUser;
@@ -154,7 +155,10 @@ public class TimelineActivity extends AppCompatActivity {
                 JSONArray jsonArray = json.jsonArray;
                 try {
                      List<Tweet> tweetsFromNetwork = Tweet.fromJsonArray(jsonArray);
-                     adapter.clear();
+
+
+
+                    adapter.clear();
                      adapter.addAll(tweetsFromNetwork);
                      swipeContainer.setRefreshing(false);
                     AsyncTask.execute(new Runnable() {
@@ -162,8 +166,10 @@ public class TimelineActivity extends AppCompatActivity {
                         public void run() {
                             Log.i(TAG, "saving data into the database");
                             List<User> usersFromNetwork = User.fromJsonTweetArray(tweetsFromNetwork);
+                            List<Media> mediasFromNetwork = Media.fromJsonTweetArray(tweetsFromNetwork);
                             tweetDao.insertModel(usersFromNetwork.toArray(new User[0]));
                             tweetDao.insertModel(tweetsFromNetwork.toArray(new Tweet[0]));
+                            tweetDao.insertModel(mediasFromNetwork.toArray(new Media[0]));
 
                         }
                     });

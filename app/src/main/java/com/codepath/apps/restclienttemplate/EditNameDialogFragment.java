@@ -115,6 +115,7 @@ public class EditNameDialogFragment extends DialogFragment {
         getDialog().getWindow().setSoftInputMode(
 
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        getDialog().getWindow().setLayout(50,50);
 
     }
 }

@@ -71,6 +71,30 @@ public class Tweet {
 
     }
 
+    public long getUserId() {
+        return userId;
+    }
+
+    public boolean isRetweet() {
+        return retweet;
+    }
+
+    public boolean isFavorite() {
+        return favorite;
+    }
+
+    public String getFavorite_count() {
+        return favorite_count;
+    }
+
+    public String getRetweet_count() {
+        return retweet_count;
+    }
+
+    public Media getMedia() {
+        return media;
+    }
+
     public String getBody() {
         return Body;
     }

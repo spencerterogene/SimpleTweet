@@ -9,6 +9,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.parceler.Parcel;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Parcel
 @Entity
 public class Media {
@@ -18,6 +21,14 @@ public class Media {
 
     @ColumnInfo
     String mediaUrl;
+
+    public static List<Media> fromJsonTweetArray(List<Tweet> tweetsFromNetwork) {
+        List<Media>medias=new ArrayList<>();
+        for (int i =0;i<tweetsFromNetwork.size();i++){
+            medias.add(tweetsFromNetwork.get(i).media);
+        }
+        return medias;
+    }
 
 
     public String getMediaUrl(){
