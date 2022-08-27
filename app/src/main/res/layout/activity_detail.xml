@@ -96,15 +96,14 @@
 
         />
 
-    <TextView
-        android:id="@+id/comment"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="5dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/divider"
-        app:drawableLeftCompat="@drawable/comment"
-        />
+        <TextView
+            android:id="@+id/comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/divider"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="5dp"
+            app:drawableLeftCompat="@drawable/comment" />
 
     <TextView
         android:id="@+id/repeat"
@@ -113,7 +112,7 @@
         android:layout_marginTop="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:drawableLeftCompat="@drawable/repeat"
+        app:drawableLeftCompat="@drawable/black_24"
         android:layout_toEndOf="@+id/comment"
         />
 
@@ -124,7 +123,7 @@
         android:layout_marginTop="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:drawableLeftCompat="@drawable/repeat"
+        app:drawableLeftCompat="@drawable/red_24"
         android:layout_toEndOf="@+id/comment"
         />
 
@@ -208,6 +207,47 @@
         android:layout_marginTop="10dp"
         android:layout_below="@+id/Description"
         tools:srcCompat="@tools:sample/avatars" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/text1"
+            android:layout_marginTop="5dp"
+            app:counterTextColor="@color/bleu"
+            android:layout_below="@+id/comment"
+            app:counterEnabled="true"
+            app:counterMaxLength="140">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etCompose_frag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="What's hapenning?"
+                android:inputType="textMultiLine"
+                android:minLines="3"
+                android:textColorHint="@color/bleu"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <Button
+            android:id="@+id/btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text1"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="230dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="15dp"
+            android:backgroundTint="@color/bleu"
+            android:elevation="20dp"
+            android:text="@string/tweet"
+            android:textColor="@color/white" />
 
 
     </RelativeLayout>

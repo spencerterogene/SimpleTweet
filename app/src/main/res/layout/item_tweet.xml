@@ -74,7 +74,7 @@
         android:layout_marginTop="10dp"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        app:drawableLeftCompat="@drawable/repeat"
+        app:drawableLeftCompat="@drawable/black_24"
         android:layout_toEndOf="@+id/comment"
         />
 
@@ -85,7 +85,7 @@
         android:layout_marginTop="10dp"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        app:drawableLeftCompat="@drawable/repeat"
+        app:drawableLeftCompat="@drawable/red_24"
         android:layout_toEndOf="@+id/comment"
         />
 

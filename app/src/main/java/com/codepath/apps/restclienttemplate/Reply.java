@@ -29,30 +29,28 @@ import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import org.json.JSONException;
 import org.parceler.Parcels;
 
-import java.security.Key;
-
 import okhttp3.Headers;
 
-public class EditNameDialogFragment extends DialogFragment {
+public class Reply extends DialogFragment {
     private EditText mEditText;
     public static final String KEY = "BROUILLONS";
     public static final String TAG = "EditNameDialogFragment";
     public static final int MAX_TWEET_LENGTH = 140;
-    Button btnTweet1;
-    ImageButton cross;
+    TextView comment;
+    ImageButton cross1;
     TwitterClient client;
     Context context;
-    TextView name;
-    TextView username;
-    ImageView profile;
+    TextView name1;
+    TextView username1;
+    ImageView profile1;
 
 
 
 
-    public EditNameDialogFragment() { }
+    public Reply() { }
 
-    public static EditNameDialogFragment newInstance(String title) {
-        EditNameDialogFragment frag = new EditNameDialogFragment();
+    public static Reply newInstance(String title) {
+        Reply frag = new Reply();
         Bundle args = new Bundle();
         args.putString("title", title);
         frag.setArguments(args);
@@ -78,19 +76,19 @@ public class EditNameDialogFragment extends DialogFragment {
         // Get field from view
 
         mEditText = view.findViewById(R.id.etCompose_frag);
-        btnTweet1 = view.findViewById(R.id.btn);
-        cross = view.findViewById(R.id.cross);
-        name = view.findViewById(R.id.Name);
-        username = view.findViewById(R.id.UserName);
-        profile = view.findViewById(R.id.Image);
+        comment = view.findViewById(R.id.comment);
+        cross1 = view.findViewById(R.id.cross1);
+        name1 = view.findViewById(R.id.Name1);
+        username1 = view.findViewById(R.id.UserName1);
+        profile1 = view.findViewById(R.id.Image2);
 
         client = TwitterApp.getRestClient(context);
 
-        name.setText(MyUser.name);
-        username.setText(MyUser.screenName);
+        name1.setText(MyUser.name);
+        username1.setText(MyUser.screenName);
         Glide.with(getContext()).load(MyUser.profileImageUrl)
                 .transform(new RoundedCorners(70))
-                .into(profile);
+                .into(profile1);
 
 
         //draft
@@ -101,13 +99,13 @@ public class EditNameDialogFragment extends DialogFragment {
             mEditText.setText(draft);
         }
 
-        cross.setOnClickListener(new View.OnClickListener() {
+        cross1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dismiss();
             }
         });
-        btnTweet1.setOnClickListener(new View.OnClickListener() {
+        comment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String tweetContent = mEditText.getText().toString();

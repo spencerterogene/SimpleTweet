@@ -8,7 +8,7 @@
     tools:context=".EditNameDialogFragment">
 
     <ImageView
-        android:id="@+id/Image"
+        android:id="@+id/Image2"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_alignParentEnd="true"
@@ -17,27 +17,27 @@
         />
 
     <TextView
-        android:id="@+id/Name"
+        android:id="@+id/Name1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="60dp"
         android:layout_marginTop="5dp"
-        android:layout_alignEnd="@+id/Image"
+        android:layout_alignEnd="@+id/Image2"
         tools:text="Spencer" />
 
 
     <TextView
-        android:id="@+id/UserName"
+        android:id="@+id/UserName1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/Name"
+        android:layout_below="@+id/Name1"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="60dp"
-        android:layout_alignEnd="@+id/Image"
+        android:layout_alignEnd="@+id/Image2"
         tools:text="Terogene" />
 
     <ImageButton
-        android:id="@+id/cross"
+        android:id="@+id/cross1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
@@ -47,15 +47,15 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/text1"
+        android:id="@+id/text2"
         android:layout_marginTop="150dp"
         app:counterTextColor="@color/bleu"
-        android:layout_below="@+id/Image"
+        android:layout_below="@+id/Image2"
         app:counterEnabled="true"
         app:counterMaxLength="140">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etCompose_frag"
+            android:id="@+id/etCompose_frag1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -72,10 +72,10 @@
 
 
     <Button
-        android:id="@+id/btn"
+        android:id="@+id/btn1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/text1"
+        android:layout_below="@+id/text2"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="230dp"
         android:layout_marginTop="5dp"

@@ -179,27 +179,27 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                 Retweet_Count1.setVisibility(View.INVISIBLE);
             }
 
-            Retweet_Count.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int var = Integer.parseInt(tweet.retweet_count);
-                    var++;
-                    tweet.retweet=true;
-                    Retweet_Count.setText(String.valueOf(var));
-                    Retweet_Count.setVisibility(View.INVISIBLE);
-                    Retweet_Count1.setVisibility(View.VISIBLE);
+           Retweet_Count.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        int var = Integer.parseInt(tweet.retweet_count);
+                        ++var;
+                        tweet.retweet=true;
 
-                }
-            });
-
+                        Retweet_Count1.setText(String.valueOf(var));
+                        Retweet_Count.setVisibility(View.INVISIBLE);
+                        Retweet_Count1.setVisibility(View.VISIBLE);
+                    }
+                });
             Retweet_Count1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     int var = Integer.parseInt(tweet.retweet_count);
-                    tweet.retweet=true;
-                    Retweet_Count1.setText(String.valueOf(var));
-                    retweeted.setVisibility(View.VISIBLE);
+                    Retweet_Count.setText(String.valueOf(var));
+                    Retweet_Count.setVisibility(View.VISIBLE);
                     Retweet_Count1.setVisibility(View.INVISIBLE);
+                    tweet.retweet=true;
+
                 }
             });
 

@@ -3,22 +3,31 @@ package com.codepath.apps.restclienttemplate;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.codepath.apps.restclienttemplate.models.Tweet;
+import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 
+import org.json.JSONException;
 import org.parceler.Parcels;
 
-public class DetailActivity extends AppCompatActivity {
+import okhttp3.Headers;
 
+public class DetailActivity extends AppCompatActivity {
+    public static final String TAG = "DetailActivity";
     ImageView Image;
     TextView Name;
     TextView UserName;
@@ -32,6 +41,12 @@ public class DetailActivity extends AppCompatActivity {
     TextView Heure;
     TextView likes;
     TextView retweet2;
+    Button btnTweet1;
+    TwitterClient client;
+    Context context;
+    public static final int MAX_TWEET_LENGTH = 140;
+
+
 
 
     @Override
@@ -60,6 +75,7 @@ public class DetailActivity extends AppCompatActivity {
         Heure = findViewById(R.id.heure);
         likes = findViewById(R.id.likes);
         retweet2 = findViewById(R.id.retweet2);
+        btnTweet1 = findViewById(R.id.btn);
 
 
 
@@ -89,14 +105,12 @@ public class DetailActivity extends AppCompatActivity {
             Favorite_Count.setVisibility(View.VISIBLE);
             Favorite_Count2.setVisibility(View.INVISIBLE);
         }
-
         Favorite_Count.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int var = Integer.parseInt(tweet.favorite_count);
                 ++var;
                 tweet.retweet=true;
-
                 Favorite_Count2.setText(String.valueOf(var));
                 Favorite_Count.setVisibility(View.INVISIBLE);
                 Favorite_Count2.setVisibility(View.VISIBLE);
@@ -106,11 +120,10 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 int var = Integer.parseInt(tweet.favorite_count);
+                tweet.retweet=true;
                 Favorite_Count.setText(String.valueOf(var));
                 Favorite_Count.setVisibility(View.VISIBLE);
                 Favorite_Count2.setVisibility(View.INVISIBLE);
-                tweet.retweet=true;
-
             }
         });
 
@@ -126,24 +139,30 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 int var = Integer.parseInt(tweet.retweet_count);
-                var++;
+                ++var;
                 tweet.retweet=true;
-                Retweet_Count.setText(String.valueOf(var));
+
+                Retweet_Count1.setText(String.valueOf(var));
                 Retweet_Count.setVisibility(View.INVISIBLE);
                 Retweet_Count1.setVisibility(View.VISIBLE);
-
             }
         });
-
         Retweet_Count1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int var = Integer.parseInt(tweet.retweet_count);
-                tweet.retweet=true;
-                Retweet_Count1.setText(String.valueOf(var));
-                retweeted.setVisibility(View.VISIBLE);
+                Retweet_Count.setText(String.valueOf(var));
+                Retweet_Count.setVisibility(View.VISIBLE);
                 Retweet_Count1.setVisibility(View.INVISIBLE);
+                tweet.retweet=true;
+
             }
+        });
+
+        btnTweet1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showEditDialog(Parcels.wrap(tweet)); }
         });
 
         if (!tweet.media.getMediaUrl().isEmpty()){
@@ -156,6 +175,12 @@ public class DetailActivity extends AppCompatActivity {
 
 
     }
+
+    private void showEditDialog(Parcelable tweet){
+
+
+    }
+
     @Override
     public boolean onOptionsItemSelected (MenuItem menuItem) {
         int homeAsUp = R.id.homeAsUp;
