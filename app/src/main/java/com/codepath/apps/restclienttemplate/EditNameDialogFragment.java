@@ -10,12 +10,14 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.codepath.apps.restclienttemplate.models.Tweet;
+import com.codepath.apps.restclienttemplate.models.User;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 
 import org.json.JSONException;
@@ -28,6 +30,7 @@ public class EditNameDialogFragment extends DialogFragment {
     public static final String TAG = "EditNameDialogFragment";
     public static final int MAX_TWEET_LENGTH = 140;
     Button btnTweet1;
+    ImageButton cross;
     TwitterClient client;
     Context context;
 
@@ -61,7 +64,16 @@ public class EditNameDialogFragment extends DialogFragment {
 
         mEditText = (EditText) view.findViewById(R.id.etCompose_frag);
         btnTweet1 = view.findViewById(R.id.btn);
+        cross = view.findViewById(R.id.cross);
+        Bundle bundle = getArguments();
+        User MyUser = Parcels.unwrap(bundle.getParcelable("profile"));
 
+        cross.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dismiss();
+            }
+        });
         btnTweet1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

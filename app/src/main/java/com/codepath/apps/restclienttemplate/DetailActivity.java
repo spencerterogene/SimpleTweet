@@ -30,6 +30,8 @@ public class DetailActivity extends AppCompatActivity {
     TextView retweeted;
     TextView Retweet_Count1;
     TextView Heure;
+    TextView likes;
+    TextView retweet2;
 
 
     @Override
@@ -56,6 +58,9 @@ public class DetailActivity extends AppCompatActivity {
         retweeted = findViewById(R.id.repeat);
         Retweet_Count1 = findViewById(R.id.repeat1);
         Heure = findViewById(R.id.heure);
+        likes = findViewById(R.id.likes);
+        retweet2 = findViewById(R.id.retweet2);
+
 
 
 
@@ -67,6 +72,9 @@ public class DetailActivity extends AppCompatActivity {
         retweeted.setText(tweet.retweet_count);
         Retweet_Count1.setText(tweet.retweet_count);
         Heure.setText(tweet.getCreatedAt1());
+        likes.setText(tweet.getFavorite_count()+"Favorites");
+        retweet2.setText(tweet.getRetweet_count()+"Retweet");
+
 
 
         Glide.with(this)

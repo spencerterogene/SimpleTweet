@@ -28,6 +28,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 import org.parceler.Parcels;
 
 import java.util.ArrayList;
@@ -46,6 +47,7 @@ public class TimelineActivity extends AppCompatActivity {
     SwipeRefreshLayout swipeContainer;
     private final int REQUEST_CODE = 20;
     EndlessRecyclerViewScrollListener scrollListener;
+    public static User MyUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,6 +149,23 @@ public class TimelineActivity extends AppCompatActivity {
 
 
     private void populateHomeTimeline() {
+        client.getCredentials(new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Headers headers, JSON json) {
+                Log.i(TAG,"Success Credentials"+json.toString());
+                JSONObject jsonObject =json.jsonObject;
+                try {
+                    MyUser = User.fromJson(jsonObject);
+                }catch (JSONException e){
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
+
+            }
+        });
         client.getHomeTimeline(new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json) {
@@ -205,6 +224,10 @@ public class TimelineActivity extends AppCompatActivity {
         FragmentManager fm = getSupportFragmentManager();
 
         EditNameDialogFragment editNameDialogFragment = EditNameDialogFragment.newInstance("Some Title");
+
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("profile",Parcels.wrap(MyUser));
+        editNameDialogFragment.setArguments(bundle);
 
         editNameDialogFragment.show(fm, "fragment_edit_name");
 

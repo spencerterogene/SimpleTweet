@@ -48,7 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/Image"
-        android:layout_marginStart="0dp"
+        android:layout_marginStart="10dp"
         android:layout_toEndOf="@+id/Image"
         android:fontFamily="sans-serif-thin"
         tools:text="Terogene" />
@@ -64,19 +64,51 @@
         android:autoLink="all"
         android:fontFamily="sans-serif-thin"
         tools:text="Description" />
+
+    <View
+        android:id="@+id/divider3"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/heure"
+        android:background="?android:attr/listDivider"
+        />
+
+    <TextView
+        android:id="@+id/likes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/divider3"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_alignParentStart="true"
+        android:text="TextView"
+        />
+    <TextView
+        android:id="@+id/retweet2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/divider3"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/likes"
+        android:text="TextView"
+
+        />
+
     <TextView
         android:id="@+id/comment"
         android:layout_marginStart="50dp"
         android:layout_marginTop="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/heure"
+        android:layout_below="@+id/divider"
         app:drawableLeftCompat="@drawable/comment"
         />
 
     <TextView
         android:id="@+id/repeat"
-        android:layout_below="@+id/heure"
+        android:layout_below="@+id/divider"
         android:layout_marginStart="50dp"
         android:layout_marginTop="5dp"
         android:layout_width="wrap_content"
@@ -87,7 +119,7 @@
 
     <TextView
         android:id="@+id/repeat1"
-        android:layout_below="@+id/heure"
+        android:layout_below="@+id/divider"
         android:layout_marginStart="50dp"
         android:layout_marginTop="5dp"
         android:layout_width="wrap_content"
@@ -99,7 +131,7 @@
     <TextView
         android:id="@+id/coeur"
         android:layout_marginTop="5dp"
-        android:layout_below="@+id/heure"
+        android:layout_below="@+id/divider"
         android:layout_width="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_height="wrap_content"
@@ -109,7 +141,7 @@
 
         <TextView
             android:id="@+id/coeur1"
-            android:layout_below="@+id/heure"
+            android:layout_below="@+id/divider"
             android:layout_width="wrap_content"
             android:layout_marginStart="50dp"
             android:layout_marginTop="5dp"
@@ -121,7 +153,7 @@
     <TextView
         android:id="@+id/share"
         android:layout_marginStart="50dp"
-        android:layout_below="@+id/heure"
+        android:layout_below="@+id/divider"
         android:layout_width="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_height="wrap_content"
@@ -136,7 +168,7 @@
         android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_below="@+id/heure"
+        android:layout_below="@+id/likes"
         android:background="?android:attr/listDivider"
         />
 
