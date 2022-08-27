@@ -128,7 +128,7 @@ public class Reply extends DialogFragment {
                             Intent intent = new Intent();
                             intent.putExtra("tweet",Parcels.wrap(tweet));
 
-                            EditListTweets listener = (EditListTweets) getTargetFragment();
+                            EditNameDialogFragment.EditListTweets listener = (EditNameDialogFragment.EditListTweets) getTargetFragment();
                             listener.onFinishEditDialog(tweet);
                         } catch (JSONException e) {
                             e.printStackTrace();
