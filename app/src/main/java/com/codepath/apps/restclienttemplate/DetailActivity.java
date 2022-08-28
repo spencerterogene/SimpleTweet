@@ -1,7 +1,10 @@
 package com.codepath.apps.restclienttemplate;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,7 +32,10 @@ import okhttp3.Headers;
 
 public class DetailActivity extends AppCompatActivity {
     public static final String TAG = "DetailActivity";
+    public static final int MAX_TWEET_LENGTH = 140;
     ImageView Image;
+    EditText mEditText;
+    TwitterClient client;
     TextView Name;
     TextView UserName;
     TextView Description;
@@ -41,10 +48,8 @@ public class DetailActivity extends AppCompatActivity {
     TextView Heure;
     TextView likes;
     TextView retweet2;
-    Button btnTweet1;
-    TwitterClient client;
-    Context context;
-    public static final int MAX_TWEET_LENGTH = 140;
+    Button btnTweet2;
+
 
 
 
@@ -74,8 +79,9 @@ public class DetailActivity extends AppCompatActivity {
         Retweet_Count1 = findViewById(R.id.repeat1);
         Heure = findViewById(R.id.heure);
         likes = findViewById(R.id.likes);
+        mEditText = findViewById(R.id.etCompose);
         retweet2 = findViewById(R.id.retweet2);
-        btnTweet1 = findViewById(R.id.btn);
+        btnTweet2 = findViewById(R.id.btn1);
 
 
 
@@ -85,6 +91,8 @@ public class DetailActivity extends AppCompatActivity {
         Name.setText(tweet.getUser().getName());
         UserName.setText(tweet.getUser().getScreenName());
         Description.setText(tweet.getBody());
+        mEditText.setHint("Reply to " + tweet.user.getName());
+        mEditText.setText(tweet.user.getScreenName());
         retweeted.setText(tweet.retweet_count);
         Retweet_Count1.setText(tweet.retweet_count);
         Heure.setText(tweet.getCreatedAt1());
@@ -159,10 +167,47 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
 
-        btnTweet1.setOnClickListener(new View.OnClickListener() {
+        btnTweet2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showEditDialog(Parcels.wrap(tweet)); }
+                String tweetContent = mEditText.getText().toString();
+                if (tweetContent.isEmpty()) {
+                    Toast.makeText(DetailActivity.this, "Sorry your tweet cannot be empty", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (tweetContent.length() > MAX_TWEET_LENGTH) {
+                    Toast.makeText(DetailActivity.this, "Sorry your tweet is too long", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                client.publishTweet(tweetContent, new JsonHttpResponseHandler() {
+                    @Override
+                    public void onSuccess(int statusCode, Headers headers, JSON json) {
+                        try {
+                            Tweet tweet = Tweet.fromJson(json.jsonObject);
+                            Log.i("tweet", tweet.Body);
+
+
+
+                            mEditText.setHint("Reply");
+                            mEditText.setText("");
+                            Toast.makeText(DetailActivity.this, "Tweeted", Toast.LENGTH_LONG).show();
+
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
+
+                    }
+                });
+
+            }
         });
 
         if (!tweet.media.getMediaUrl().isEmpty()){
@@ -176,17 +221,13 @@ public class DetailActivity extends AppCompatActivity {
 
     }
 
-    private void showEditDialog(Parcelable tweet){
 
-
-    }
 
     @Override
-    public boolean onOptionsItemSelected (MenuItem menuItem) {
-        int homeAsUp = R.id.homeAsUp;
-            Intent intent = new Intent(DetailActivity.this,TimelineActivity.class);
-            startActivity(intent);
-
+    public boolean onOptionsItemSelected (@NonNull MenuItem menuItem) {
+        Intent intent = new Intent(DetailActivity.this,TimelineActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivityIfNeeded(intent,0);
         return true;
     }
 
