@@ -1,18 +1,28 @@
 package com.codepath.apps.restclienttemplate;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Parcelable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.codepath.apps.restclienttemplate.models.Tweet;
+import com.codepath.apps.restclienttemplate.models.User;
+import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.volokh.danylo.video_player_manager.manager.PlayerItemChangeListener;
 import com.volokh.danylo.video_player_manager.manager.SingleVideoPlayerManager;
 import com.volokh.danylo.video_player_manager.manager.VideoPlayerManager;
@@ -20,10 +30,16 @@ import com.volokh.danylo.video_player_manager.meta.MetaData;
 import com.volokh.danylo.video_player_manager.ui.SimpleMainThreadMediaPlayerListener;
 import com.volokh.danylo.video_player_manager.ui.VideoPlayerView;
 
+import org.json.JSONException;
+import org.parceler.Parcels;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.Headers;
+
 public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder>{
+    public static final String TAG = "TweetsAdapter";
 
     Context context;
     List<Tweet> tweets;
@@ -72,6 +88,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
+
         ImageView ProfileImage;
         TextView Body;
         TextView ScreenName;
@@ -85,12 +102,16 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         TextView Retweet_Count1;
         VideoPlayerView mVideoPlayer_1;
         ImageView mVideoCover;
+        TextView comment;
+
+
 
 
         public ViewHolder(@NonNull View itemView, final OnItemClickListener clickListener) {
             super(itemView);
             ProfileImage = itemView.findViewById(R.id.ProfileImage);
             Body = itemView.findViewById(R.id.Body);
+            comment = itemView.findViewById(R.id.comment);
             ScreenName = itemView.findViewById(R.id.ScreenName);
             username = itemView.findViewById(R.id.username);
             Date = itemView.findViewById(R.id.Date);
@@ -110,8 +131,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                     clickListener.OnItemClick(itemView,getAdapterPosition());
                 }
             });
-
-        }
+                  }
 
 
         public void bind(Tweet tweet) {
@@ -203,6 +223,11 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                 }
             });
 
+            comment.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {showEditDialog(Parcels.wrap(tweet));}
+            });
+
              VideoPlayerManager<MetaData> mVideoPlayerManager = new SingleVideoPlayerManager(new PlayerItemChangeListener() {
                 @Override
                 public void onPlayerItemChanged(MetaData metaData) {
@@ -233,5 +258,24 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
         }
 
+    }
+
+    private void showEditDialog(Parcelable tweet) {
+
+        FragmentManager fm = ((FragmentActivity) context).getSupportFragmentManager();
+
+        Reply reply = Reply.newInstance("Some Title");
+
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("tweets",tweet);
+        bundle.putParcelable("profile",Parcels.wrap(TimelineActivity.MyUser));
+        reply.setArguments(bundle);
+
+        reply.show(fm, "fragment_edit_name");
+
+    }
+
+    public interface EditListTweets{
+        void onFinishEditDialog(Tweet tweet);
     }
 }

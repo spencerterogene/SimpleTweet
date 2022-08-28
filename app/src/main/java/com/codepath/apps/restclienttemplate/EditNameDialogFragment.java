@@ -1,6 +1,8 @@
 package com.codepath.apps.restclienttemplate;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -104,7 +106,7 @@ public class EditNameDialogFragment extends DialogFragment {
         cross.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dismiss();
+                open();
             }
         });
         btnTweet1.setOnClickListener(new View.OnClickListener() {
@@ -168,5 +170,36 @@ public class EditNameDialogFragment extends DialogFragment {
     }
     public interface EditListTweets{
         void onFinishEditDialog(Tweet tweet);
+    }
+
+    public void open(){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+        alertDialogBuilder.setMessage("Save draft?");
+        alertDialogBuilder.setPositiveButton("Save",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        save();
+                    }
+                });
+
+        alertDialogBuilder.setNegativeButton("Delete",new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dismiss();
+            }
+        });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+    private void save(){
+        String compose = mEditText.getText().toString();
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
+        SharedPreferences.Editor edit = pref.edit();
+        edit.putString(KEY,compose);
+        edit.commit();
+        dismiss();
     }
 }
