@@ -84,7 +84,7 @@ public class DetailActivity extends AppCompatActivity {
         btnTweet2 = findViewById(R.id.btn3);
 
 
-
+        client = TwitterApp.getRestClient(this);
 
         Tweet tweet = Parcels.unwrap(getIntent().getParcelableExtra("tweets"));
 
