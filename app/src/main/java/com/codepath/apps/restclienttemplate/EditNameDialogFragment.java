@@ -40,7 +40,7 @@ public class EditNameDialogFragment extends DialogFragment {
     public static final String KEY = "BROUILLONS";
     public static final String TAG = "EditNameDialogFragment";
     public static final int MAX_TWEET_LENGTH = 140;
-    Button btnTweet1;
+    Button btnTweet2;
     ImageButton cross;
     TwitterClient client;
     Context context;
@@ -80,9 +80,9 @@ public class EditNameDialogFragment extends DialogFragment {
         // Get field from view
 
         mEditText = view.findViewById(R.id.etCompose_frag);
-        btnTweet1 = view.findViewById(R.id.btn);
+        btnTweet2 = view.findViewById(R.id.btn);
         cross = view.findViewById(R.id.cross);
-        name = view.findViewById(R.id.Name);
+        name = view.findViewById(R.id.Name5);
         username = view.findViewById(R.id.UserName);
         profile = view.findViewById(R.id.Image);
 
@@ -109,7 +109,7 @@ public class EditNameDialogFragment extends DialogFragment {
                 open();
             }
         });
-        btnTweet1.setOnClickListener(new View.OnClickListener() {
+        btnTweet2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String tweetContent = mEditText.getText().toString();

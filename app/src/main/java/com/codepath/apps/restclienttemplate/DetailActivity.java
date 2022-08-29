@@ -79,9 +79,9 @@ public class DetailActivity extends AppCompatActivity {
         Retweet_Count1 = findViewById(R.id.repeat1);
         Heure = findViewById(R.id.heure);
         likes = findViewById(R.id.likes);
-        mEditText = findViewById(R.id.etCompose);
+        mEditText = findViewById(R.id.etCompose_frag);
         retweet2 = findViewById(R.id.retweet2);
-        btnTweet2 = findViewById(R.id.btn1);
+        btnTweet2 = findViewById(R.id.btn3);
 
 
 
@@ -91,7 +91,7 @@ public class DetailActivity extends AppCompatActivity {
         Name.setText(tweet.getUser().getName());
         UserName.setText(tweet.getUser().getScreenName());
         Description.setText(tweet.getBody());
-        mEditText.setHint("Reply to " + tweet.user.getName());
+        mEditText.setHint("Reply to "+tweet.user.getName());
         mEditText.setText(tweet.user.getScreenName());
         retweeted.setText(tweet.retweet_count);
         Retweet_Count1.setText(tweet.retweet_count);
@@ -185,28 +185,18 @@ public class DetailActivity extends AppCompatActivity {
                         try {
                             Tweet tweet = Tweet.fromJson(json.jsonObject);
                             Log.i("tweet", tweet.Body);
-
-
-
                             mEditText.setHint("Reply");
                             mEditText.setText("");
                             Toast.makeText(DetailActivity.this, "Tweeted", Toast.LENGTH_LONG).show();
-
-
-
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
                     }
-
                     @Override
                     public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
 
                     }
                 });
-
             }
         });
 

@@ -36,12 +36,24 @@
         android:layout_alignEnd="@+id/Image2"
         tools:text="Terogene" />
 
+    <TextView
+        android:id="@+id/arrow"
+        android:layout_below="@+id/cross1"
+        android:drawablePadding="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:drawableLeftCompat="@drawable/arrow_24"
+        />
+
     <ImageButton
         android:id="@+id/cross1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/black"
         app:drawableLeftCompat="@drawable/ic_baseline_close_24" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -67,7 +79,9 @@
             android:hint="What's hapenning?"
             android:inputType="textMultiLine"
             android:minLines="5"
-            android:textColorHint="@color/bleu"/>
+            android:textColorHint="@color/bleu"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
+            />
     </com.google.android.material.textfield.TextInputLayout>
 
 
